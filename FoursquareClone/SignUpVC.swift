@@ -8,7 +8,7 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController  {
+class SignUpVC: UIViewController  {
     
     @IBOutlet weak var userNameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -17,33 +17,7 @@ class ViewController: UIViewController  {
         super.viewDidLoad()
         
         
-        /*
         
-        let parseObject = PFObject(className: "Fruits")
-        parseObject["name"] = "Banana"
-        parseObject["calories"] = 150
-        parseObject.saveInBackground { success, error in
-            if error != nil{
-                print(error?.localizedDescription)
-            }else{
-                print("uploaded")
-            }
-        }
-        
-        */
-        
-        /*
-        
-        let query = PFQuery(className: "Fruits")
-        query.whereKey("calories", greaterThan: 120)
-        query.findObjectsInBackground { objects, error in
-            if error != nil {
-                print(error?.localizedDescription)
-            }else{
-                print(objects)
-            }
-        }
-        */
         
     }
     
@@ -109,4 +83,15 @@ class ViewController: UIViewController  {
 
 
 }
-
+extension UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+}
