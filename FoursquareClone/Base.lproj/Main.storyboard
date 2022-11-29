@@ -152,7 +152,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffeeShop" translatesAutoresizingMaskIntoConstraints="NO" id="BBd-7z-Urb">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coffeeShop2" translatesAutoresizingMaskIntoConstraints="NO" id="BBd-7z-Urb">
                                 <rect key="frame" x="-30" y="-9" width="467" height="889"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="889" id="zPM-X2-aBC"/>
@@ -262,7 +262,7 @@
     <resources>
         <image name="burger2" width="1080" height="1920"/>
         <image name="choose" width="200" height="200"/>
-        <image name="coffeeShop" width="1024" height="1024"/>
+        <image name="coffeeShop2" width="1024" height="1024"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
