@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00070BA92935765600ACC31C /* PlacesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00070BA82935765600ACC31C /* PlacesVC.swift */; };
 		0015D80829367DCD0026C2AA /* AddPlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0015D80729367DCD0026C2AA /* AddPlaceVC.swift */; };
+		0018F1B32936B63400D5BF50 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0018F1B22936B63400D5BF50 /* MapVC.swift */; };
 		00A6BC2B2933ACF60091E84B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6BC2A2933ACF60091E84B /* AppDelegate.swift */; };
 		00A6BC2D2933ACF60091E84B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6BC2C2933ACF60091E84B /* SceneDelegate.swift */; };
 		00A6BC2F2933ACF60091E84B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A6BC2E2933ACF60091E84B /* SignUpVC.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		00070BA82935765600ACC31C /* PlacesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesVC.swift; sourceTree = "<group>"; };
 		0015D80729367DCD0026C2AA /* AddPlaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceVC.swift; sourceTree = "<group>"; };
+		0018F1B22936B63400D5BF50 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		00A6BC272933ACF60091E84B /* FoursquareClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoursquareClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A6BC2A2933ACF60091E84B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00A6BC2C2933ACF60091E84B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				00A6BC332933ACF80091E84B /* Assets.xcassets */,
 				00A6BC352933ACF80091E84B /* LaunchScreen.storyboard */,
 				00A6BC382933ACF80091E84B /* Info.plist */,
+				0018F1B22936B63400D5BF50 /* MapVC.swift */,
 			);
 			path = FoursquareClone;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00A6BC2F2933ACF60091E84B /* SignUpVC.swift in Sources */,
+				0018F1B32936B63400D5BF50 /* MapVC.swift in Sources */,
 				00A6BC2B2933ACF60091E84B /* AppDelegate.swift in Sources */,
 				00070BA92935765600ACC31C /* PlacesVC.swift in Sources */,
 				0015D80829367DCD0026C2AA /* AddPlaceVC.swift in Sources */,

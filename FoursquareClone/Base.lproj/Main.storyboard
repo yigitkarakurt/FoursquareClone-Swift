@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -233,11 +234,43 @@
                         <outlet property="placeImageView" destination="PGB-dq-dZH" id="IpI-eS-9Jh"/>
                         <outlet property="placeNameText" destination="Eko-p9-2vg" id="ree-Oy-iqT"/>
                         <outlet property="placeTypeText" destination="FVk-hd-1d7" id="sro-nr-QnA"/>
+                        <segue destination="Hwb-Pa-tes" kind="presentation" identifier="toMapVC" modalPresentationStyle="fullScreen" id="T3S-mI-lDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5e7-jc-6fS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2849.6183206106871" y="-28.169014084507044"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="ahF-I7-v4J">
+            <objects>
+                <viewController id="8dh-bn-USu" customClass="MapVC" customModule="FoursquareClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jT9-bA-MRg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efz-0F-BbG">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GOV-Ql-E8M"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GOV-Ql-E8M" firstAttribute="bottom" secondItem="efz-0F-BbG" secondAttribute="bottom" id="62z-YR-t6D"/>
+                            <constraint firstItem="efz-0F-BbG" firstAttribute="leading" secondItem="GOV-Ql-E8M" secondAttribute="leading" id="A2H-Uy-Bbk"/>
+                            <constraint firstItem="GOV-Ql-E8M" firstAttribute="trailing" secondItem="efz-0F-BbG" secondAttribute="trailing" id="hmk-KI-Xm1"/>
+                            <constraint firstItem="efz-0F-BbG" firstAttribute="top" secondItem="GOV-Ql-E8M" secondAttribute="top" id="opG-Jw-OnT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tkg-73-U7T"/>
+                    <connections>
+                        <outlet property="mapView" destination="efz-0F-BbG" id="OGY-sJ-Oc4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khm-cO-MsK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4565.6488549618316" y="-28.169014084507044"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9H0-b5-2UV">
@@ -257,6 +290,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXH-Mq-bV9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1101.5267175572519" y="-28.169014084507044"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3w2-yY-9Ew">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hwb-Pa-tes" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vy6-9d-wuv"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tNU-xh-P4Q">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8dh-bn-USu" kind="relationship" relationship="rootViewController" id="E36-uJ-L7C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KpI-Kd-pNY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3638.9312977099235" y="-28.169014084507044"/>
         </scene>
     </scenes>
     <resources>
