@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddPlaceVC: UIViewController {
+class AddPlaceVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var placeImageView: UIImageView!
@@ -18,9 +18,30 @@ class AddPlaceVC: UIViewController {
     
     override func viewDidLoad() {
         backgroundImageView.alpha = 0.8
+        
+        placeImageView.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
+        placeImageView.addGestureRecognizer(gestureRecognizer)
+        
+    }
+    
+    @objc func chooseImage(){
+        
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = .photoLibrary
+        present(pickerController, animated: true)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        placeImageView.image = info[.originalImage] as? UIImage
+        self.dismiss(animated: true)
     }
     
 
+    
+    
     
 
     @IBAction func nextButtonClicked(_ sender: Any) {
