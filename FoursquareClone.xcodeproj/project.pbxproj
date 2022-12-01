@@ -78,13 +78,13 @@
 				00A6BC2E2933ACF60091E84B /* SignUpVC.swift */,
 				00070BA82935765600ACC31C /* PlacesVC.swift */,
 				0015D80729367DCD0026C2AA /* AddPlaceVC.swift */,
+				0018F1B22936B63400D5BF50 /* MapVC.swift */,
 				009DADE62937AA0A0079B5BB /* DetailsVC.swift */,
 				009DADE82937B7FA0079B5BB /* PlaceModel.swift */,
 				00A6BC302933ACF60091E84B /* Main.storyboard */,
 				00A6BC332933ACF80091E84B /* Assets.xcassets */,
 				00A6BC352933ACF80091E84B /* LaunchScreen.storyboard */,
 				00A6BC382933ACF80091E84B /* Info.plist */,
-				0018F1B22936B63400D5BF50 /* MapVC.swift */,
 			);
 			path = FoursquareClone;
 			sourceTree = "<group>";
