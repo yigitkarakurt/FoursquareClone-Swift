@@ -24,6 +24,11 @@ class DetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        getDataFromParse()
+    }
+    
+    func getDataFromParse(){
         let query = PFQuery(className: "Places")
         query.whereKey("objectId", equalTo: chosenPlaceId)
         query.findObjectsInBackground { objects, error in
@@ -34,6 +39,8 @@ class DetailsVC: UIViewController {
                 if objects != nil {
                     if objects!.count > 0 {
                         let chosenPlaceObject = objects![0]
+                        
+                        //Objects
                         
                         if let placeName = chosenPlaceObject.object(forKey: "name") as? String {
                             self.detailsNameLabel.text = placeName
@@ -69,13 +76,26 @@ class DetailsVC: UIViewController {
                                 }
                             }
                         }
+                        
+                        //Maps
+                        
+                        let location = CLLocationCoordinate2D(latitude: self.chosenPlaceLatitude, longitude: self.chosenPlaceLongitude)
+                        
+                        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                        
+                        let region = MKCoordinateRegion(center: location, span: span)
+                        
+                        self.detailsMapView.setRegion(region, animated: true)
+                        
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = location
+                        annotation.title = self.detailsNameLabel.text!
+                        annotation.subtitle = self.detailsTypeLabel.text!
+                        self.detailsMapView.addAnnotation(annotation)
                     }
-                    
                 }
-
             }
         }
-
         
     }
     
