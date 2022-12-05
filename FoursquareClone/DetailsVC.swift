@@ -17,6 +17,8 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var detailsCommentLabel: UILabel!
     @IBOutlet weak var detailsMapView: MKMapView!
     var chosenPlaceId = ""
+    var chosenPlaceLatitude = Double()
+    var chosenPlaceLongitude = Double()
     
 
     override func viewDidLoad() {
@@ -28,7 +30,49 @@ class DetailsVC: UIViewController {
             if error != nil {
                 self.makeAlert(titleInput: "Error!", messageInput: error!.localizedDescription)
             }else{
-                print(objects!)
+
+                if objects != nil {
+                    if objects!.count > 0 {
+                        let chosenPlaceObject = objects![0]
+                        
+                        if let placeName = chosenPlaceObject.object(forKey: "name") as? String {
+                            self.detailsNameLabel.text = placeName
+                        }
+                        
+                        if let placeType = chosenPlaceObject.object(forKey: "type") as? String {
+                            self.detailsTypeLabel.text = placeType
+                        }
+                        
+                        if let placeComment = chosenPlaceObject.object(forKey: "comment") as? String {
+                            self.detailsCommentLabel.text = placeComment
+                        }
+                        
+                        if let placeLatitude = chosenPlaceObject.object(forKey: "latitude") as? String {
+                            if let placeLatitudeDouble = Double(placeLatitude){
+                                self.chosenPlaceLatitude = placeLatitudeDouble
+                            }
+                            
+                        }
+                        if let placeLongitude = chosenPlaceObject.object(forKey: "longitude") as? String {
+                            if let placeLongitudeDouble = Double(placeLongitude){
+                                self.chosenPlaceLongitude = placeLongitudeDouble
+                            }
+                            
+                        }
+                        
+                        if let imageData = chosenPlaceObject.object(forKey: "image") as? PFFileObject{
+                            imageData.getDataInBackground { data, error in
+                                if error == nil {
+                                    if data != nil {
+                                        self.detailsImageView.image = UIImage(data: data!)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+
             }
         }
 
