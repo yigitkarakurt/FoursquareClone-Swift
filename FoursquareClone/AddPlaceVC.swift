@@ -71,6 +71,10 @@ class AddPlaceVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         alert.addAction(okButton)
         self.present(alert, animated: true)
     }
+    
+    @objc func hideKeyboard(){
+        view.endEditing(true)
+    }
 }
 
 

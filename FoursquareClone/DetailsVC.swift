@@ -5,6 +5,7 @@
 //  Created by Yiğit Karakurt on 30.11.2022.
 //
 
+
 import UIKit
 import MapKit
 import Parse
@@ -17,16 +18,17 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var detailsCommentLabel: UILabel!
     @IBOutlet weak var detailsMapView: MKMapView!
     var chosenPlaceId = ""
-    var chosenPlaceLatitude = Double()
-    var chosenPlaceLongitude = Double()
+    
+    var chosenLatitude = Double()
+    var chosenLongitude = Double()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         getDataFromParse()
         detailsMapView.delegate = self
+        
     }
     
     func getDataFromParse(){
@@ -57,13 +59,13 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
                         
                         if let placeLatitude = chosenPlaceObject.object(forKey: "latitude") as? String {
                             if let placeLatitudeDouble = Double(placeLatitude){
-                                self.chosenPlaceLatitude = placeLatitudeDouble
+                                self.chosenLatitude = placeLatitudeDouble
                             }
                             
                         }
                         if let placeLongitude = chosenPlaceObject.object(forKey: "longitude") as? String {
                             if let placeLongitudeDouble = Double(placeLongitude){
-                                self.chosenPlaceLongitude = placeLongitudeDouble
+                                self.chosenLongitude = placeLongitudeDouble
                             }
                             
                         }
@@ -80,9 +82,9 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
                         
                         //Maps
                         
-                        let location = CLLocationCoordinate2D(latitude: self.chosenPlaceLatitude, longitude: self.chosenPlaceLongitude)
+                        let location = CLLocationCoordinate2D(latitude: self.chosenLatitude, longitude: self.chosenLongitude)
                         
-                        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                        let span = MKCoordinateSpan(latitudeDelta: 0.035, longitudeDelta: 0.035)
                         
                         let region = MKCoordinateRegion(center: location, span: span)
                         
@@ -101,8 +103,11 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
         
     }
     
+    
+    
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation{
+        if annotation is MKUserLocation {
             return nil
         }
         let reuseId = "pin"
@@ -110,43 +115,48 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         
         if pinView == nil {
-            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView?.canShowCallout = true
             let button = UIButton(type: .detailDisclosure)
             pinView?.rightCalloutAccessoryView = button
         }else{
             pinView?.annotation = annotation
         }
+        
         return pinView
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if self.chosenPlaceLatitude != 0.0 && self.chosenPlaceLongitude != 0.0{
-            let requestLocation = CLLocation(latitude: chosenPlaceLatitude, longitude: chosenPlaceLongitude)
+        
+        if self.chosenLongitude != 0.0 && self.chosenLatitude != 0.0 {
+            let requestLocation = CLLocation(latitude: self.chosenLatitude, longitude: self.chosenLongitude)
             
-            CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarks, error) in
+            CLGeocoder().reverseGeocodeLocation(requestLocation) { placemarks, error in
+                
                 if let placemark = placemarks {
                     
                     if placemark.count > 0 {
+                        
                         let mkPlaceMark = MKPlacemark(placemark: placemark[0])
                         let mapItem = MKMapItem(placemark: mkPlaceMark)
                         mapItem.name = self.detailsNameLabel.text
                         
                         let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-                        mapItem.openInMaps()
+                        
                         mapItem.openInMaps(launchOptions: launchOptions)
                     }
                 }
             }
         }
     }
-    
+     
     func makeAlert(titleInput : String ,messageInput : String ){
         let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
         alert.addAction(okButton)
         self.present(alert, animated: true)
     }
+    
     
 
     

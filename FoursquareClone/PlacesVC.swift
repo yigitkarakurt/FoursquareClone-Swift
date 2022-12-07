@@ -108,8 +108,48 @@ class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return placeNameArray.count
     }
     
-
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete{
+            
+            //TableView
+            tableView.beginUpdates()
+            let selectedId = placeIdArray[indexPath.row]
+            placeNameArray.remove(at: indexPath.row)
+            placeIdArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+            tableView.reloadData()
+            
+            //Parse
+            let query = PFQuery(className: "Places")
+            query.getObjectInBackground(withId: selectedId) { object, error in
+                
+                if error != nil {
+                    self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error!")
+                }else{
+                    object?.deleteInBackground(block: { success, error2 in
+                        if error2 != nil {
+                            self.makeAlert(titleInput: "Error!", messageInput: error2?.localizedDescription ?? "Error!")
+                            
+                        }else{
+                            object?.deleteEventually()
+                            
+                        }
+                    })
+                }
+            }
+             
+        }
+    }
+    
+    
     
     
     
 }
+
+    
+    
+
+
